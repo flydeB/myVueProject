@@ -3,7 +3,13 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import '../src/common/stylus/index.styl'
+import axios from 'axios'
+import 'jquery'
+// import '../static/bootstrap/bootstrap.min.css'
+// import '../static/bootstrap/bootstrap.min'
 
+Vue.prototype.$sxios = axios
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

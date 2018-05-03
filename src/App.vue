@@ -31,17 +31,19 @@
     line-height 80px
     text-align center
     top 0
-    left 200px
+    left 300px
     font-size 0
     a
-    text-align center
-      display inline-block
-      height 80px
-      line-height 80px
-      width 80px
-      font-size 18px
-      color #333
-      &.active
-         background #ef4238
-         color #fff
+     text-align center
+     display inline-block
+     height 80px
+     line-height 80px
+     width 80px
+     font-size 18px
+     color #333
+     &:hover
+       color red
+     &.active
+        background #ef4238
+        color #fff
 </style>
