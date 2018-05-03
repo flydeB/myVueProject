@@ -44,7 +44,4 @@
       &.active
          background #ef4238
          color #fff
-         &:active
-           color #ef4238
-
 </style>
