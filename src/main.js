@@ -9,7 +9,7 @@ import 'jquery'
 // import '../static/bootstrap/bootstrap.min.css'
 // import '../static/bootstrap/bootstrap.min'
 
-Vue.prototype.$sxios = axios
+Vue.prototype.$axios = axios
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

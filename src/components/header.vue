@@ -1,5 +1,5 @@
 <template>
-     <div class="container">
+     <div class="cat-container">
        <div class="wrapper">
          <div class="logo">
            <a href="#"><img src="../common/img/logo.png" alt=""></a>
@@ -35,7 +35,7 @@
 </script>
 <style spoted lang="stylus">
   @import "../common/stylus/base.styl"
- .container
+ .cat-container
    width 100%
    min-width 1200px
    height 80px

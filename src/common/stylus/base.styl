@@ -16,3 +16,17 @@
     -ms-transform: rotate(180deg)
     -o-transform: rotate(180deg)
     transform: rotate(180deg)n
+
+.clearfix
+  display inline-block
+  &:after
+    display block
+    content " "
+    height 0
+    width 0
+    clear both
+    visibility hidden
+
+.hot-once
+  color #2d98f3!important
+  cursor pointer
