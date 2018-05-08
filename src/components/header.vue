@@ -1,6 +1,6 @@
 <template>
      <div class="cat-container">
-       <div class="wrapper">
+       <div class="cat-header">
          <div class="logo">
            <a href="#"><img src="../common/img/logo.png" alt=""></a>
          </div>
@@ -31,7 +31,12 @@
      </div>
 </template>
 <script>
-  export default {}
+  import cityList from './cityList'
+  export default {
+    components: {
+      cityList
+    }
+  }
 </script>
 <style spoted lang="stylus">
   @import "../common/stylus/base.styl"
@@ -41,12 +46,13 @@
    height 80px
    background-color #fff
    border-bottom 1px solid #d8d8d8
-   .wrapper
+   .cat-header
      font-size 0
      margin 0 auto
      height 80px
-     width 1200px
+     width 100%
      position relative
+     z-index 1000
      .logo
        display inline-block
        width 133px
@@ -58,6 +64,9 @@
        a
         position  absolute
         left 0
+        img
+          position absolute
+          top 20px
      .city
        position relative
        float left
@@ -73,6 +82,10 @@
           line-height 80px
           text-align center
           padding 0 10px
+          .cityList
+           display inline-block
+           .city-list
+             display inline-block
      .appDownload
        position relative
        float right

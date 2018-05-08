@@ -2,6 +2,7 @@
   <div id="app">
 
    <cat-head></cat-head>
+
    <div class="link">
      <router-link to="/home">主页</router-link>
      <router-link to="/movies">电影</router-link>
@@ -15,15 +16,19 @@
 
 <script>
   import catHead from './components/header'
+  import cityList from './components/cityList'
 
   export default {
     name: 'App',
     components: {
-      catHead
+      catHead,
+      cityList
     }
   }
 </script>
 <style lang="stylus"  scoped>
+ #app
+   position relative
   .link
     position absolute
     width 400px
@@ -33,6 +38,7 @@
     top 0
     left 300px
     font-size 0
+    z-index 1000
     a
      text-align center
      display inline-block
