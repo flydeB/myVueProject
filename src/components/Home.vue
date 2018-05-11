@@ -105,7 +105,7 @@
                   <div class="movie-text">
                     <div class="movie-title">{{item.nm}}</div>
                     <span class="movie-score">
-                      {{item.sc?item.sc:"无.."}}
+                      {{item.sc ? item.sc : "无.."}}
                     </span>
                   </div>
                 </div>
@@ -139,7 +139,7 @@
                    {{item.nm}}
                  </span>
               <div class="score">
-                {{item.snum/100}}万
+                {{item.snum / 100}}万
               </div>
             </div>
           </div>
@@ -180,7 +180,7 @@
             </div>
             <div class="ticketSort" v-for="(item,index) in movieList" :key="index"
                  v-show="12<=index && index<=20">
-              <span class="num">{{index-10}}</span>
+              <span class="num">{{index - 10}}</span>
               <span class="movieName">
                    {{item.nm}}
                  </span>
@@ -231,12 +231,14 @@
 </template>
 <script>
   import catFooter from './footer'
+
   $(function () {
     $('.carousel').carousel({
       interval: 4000
     })
   })
   export default {
+    props: ['getData'],
     data () {
       return {
         movieList: {}
@@ -486,7 +488,7 @@
             top 15px
             font-size 30px
             color #ef4238
-            .wan ,.moreState
+            .wan, .moreState
               font-size 14px
               display inline-block
             .moreState
@@ -496,8 +498,8 @@
               font-size 13px
               color #999
     .catFooter
-     width 100%
-     position absolute
-     left 0
-     top 2350px
+      width 100%
+      position absolute
+      left 0
+      top 2350px
 </style>
