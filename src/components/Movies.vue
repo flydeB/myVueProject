@@ -1,14 +1,21 @@
 <template>
   <div class="cat-movie">
+    <!--导航条-->
     <div class="cat-nav">
-      <ul class="cat-navBar">
-        <li><a href="#">正在热映</a>
-        </li>
-        <li><a href="#">即将上映</a></li>
-        <li><a href="#">经典电影</a></li>
-      </ul>
+      <div class="cat-navBar">
+        <a href="#" class="navBar-list" @click="changeColor">
+          <span class="navBar-title changeStyle">正在上映</span>
+        </a>
+        <a href="#" class="navBar-list" @click="changeColor">
+          <span class="navBar-title">即将上映</span>
+        </a>
+        <a href="#" class="navBar-list" @click="changeColor">
+          <span class="navBar-title">经典影片</span>
+        </a>
+      </div>
     </div>
     <div class="container">
+      <!--题目列表-->
       <div class="cat-moviesList">
         <!--电影类型-->
         <div class="moviesList-type">
@@ -16,11 +23,12 @@
              类型:
            </div>
           <div class="title-all">
-            <a href="#">全部</a>
+            <a href="javascript:;" :class="{active:changeType}">全部</a>
           </div>
           <div class="list-wrapper">
-            <a href="#" class="title-list" v-for="(item,index) in moviesType"
-               :key="index" >
+            <a href="javascript:;" class="title-list" v-for="(item,index) in moviesType"
+               :key="index"
+               @click="changeType">
               {{item}}
             </a>
           </div>
@@ -31,12 +39,13 @@
             区域:
           </div>
           <div class="title-all">
-            <a href="#" class="">全部</a>
+            <a href="javascript:;" class="active">全部</a>
           </div>
           <div class="list-wrapper">
-            <a href="#" class="title-list" v-for="(item,index) in region"
-               :key="index">
-               <p @click="changeColor":class="{active:isChangeColor}">{{item}}</p>
+            <a href="javascript:;" class="title-list" v-for="(item,index) in region"
+               :key="index"
+               @click="changeType">
+            {{item}}
             </a>
           </div>
         </div>
@@ -46,29 +55,82 @@
             年代:
           </div>
           <div class="title-all">
-            <a href="#">全部</a>
+            <a href="#" class="active">全部</a>
           </div>
           <div class="list-wrapper">
-            <a href="#" class="title-list" v-for="(item,index) in moviesType"
-               :key="index" >
+            <a href="javascript:;" class="title-list" v-for="(item,index) in moviesType"
+               :key="index"
+               @click="changeType" >
               {{item}}
             </a>
           </div>
         </div>
       </div>
+      <!--排序-->
+      <div class="cat-sort">
+
+        <span class="sort-content">
+          <i class="sortCircleIcon">
+            <img src="../common/img/sortCircleIcon.png">
+          </i>
+          <span class="sort-text">按热门排序</span>
+        </span>
+
+        <span class="sort-content">
+          <i class="sortCircleIcon">
+            <img src="../common/img/sortCircleIcon_1.png">
+          </i>
+          <span class="sort-text">按时间排序</span>
+        </span>
+
+        <span class="sort-content">
+          <i class="sortCircleIcon">
+            <img src="../common/img/sortCircleIcon_1.png">
+          </i>
+          <span class="sort-text">按评价排序</span>
+        </span>
+
+      </div>
+      <!--展示电影-->
+      <div class="movieList">
+        <div class="hot-movie ">
+          <ul class="movie-item">
+            <li v-for="(item,index) in moviesList " :key="index" class="movie-list">
+              <div class="movie-info">
+                <div class="movie-mig">
+                  <img :src="item.img" width="160" height="220" alt="网络超时啦!">
+                  <div class="movie-text">
+                    <div class="movie-title">{{item.nm}}</div>
+                    <span class="movie-score">
+                      {{item.sc?item.sc:"无..."}}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!--脚部组件-->
+    <div class="cat-footer clearfix">
+      <cat-footer></cat-footer>
     </div>
   </div>
 </template>
 <script>
+  import catFooter from './footer.vue'
   export default {
     props: ['getData'],
     data () {
       return {
         moviesList: this.getData,
         region: ['大陆', '美国', '韩国', '日本', '中国香港', '中国台湾', '泰国', '印度',
-          '法国', '英国', '俄罗斯', '西班牙', '德国', '澳大利亚', '其他'],
-        isChangeColor: false
+          '法国', '英国', '俄罗斯', '西班牙', '德国', '澳大利亚', '其他']
       }
+    },
+    components: {
+      catFooter
     },
     computed: {
       moviesType () {
@@ -92,7 +154,38 @@
     },
     methods: {
       changeColor () {
-        this.isChangeColor =!this.isChangeColor
+        $(function () {
+          $('.navBar-title').click(function () {
+            $(this)
+              .addClass('changeStyle')
+              .parent()
+              .siblings()
+              .children()
+              .removeClass('changeStyle')
+          })
+        })
+     },
+      changeType () {
+        $(function () {
+          $('.title-list').click(function () {
+            $(this)
+              .addClass('active')
+              .siblings()
+              .removeClass('active')
+              .parent()
+              .siblings()
+              .children()
+              .removeClass('active')
+          })
+          $('.title-all a').click(function () {
+            $(this)
+              .addClass('active')
+              .parent()
+              .siblings()
+              .children()
+              .removeClass('active')
+          })
+        })
       }
     }
   }
@@ -113,35 +206,31 @@
         display inline-block
         overflow hidden
         margin 0 auto
-        li
+        .navBar-list
           display inline-block
           line-height 60px
-          &:active
-            border-top none
-          a
-            display block
-            padding 0 40px
-            height 60px
-            width 100%
-            text-decoration none
+          padding 0 40px
+          text-decoration none
+          color #999
+          .navBar-title
+            display inline-block
             font-size 16px
-            color #999
-            line-height 60px
-            text-align center
             &:hover
               color #fff
-            &:active::before
-              content ""
-              display inline-block
-              border-bottom 11px solid #fff
-              border-right 8px solid transparent
-              border-left 8px solid transparent
-              border-top none
-              position absolute
-              top 50px
-              margin-left 20px
-            &:active
+            &.changeStyle
               color #ef4238
+              display inline-block
+              &:before
+                content ""
+                display inline-block
+                border-bottom 11px solid #fff
+                border-right 8px solid transparent
+                border-left 8px solid transparent
+                border-top none
+                position absolute
+                top 50px
+                margin-left 20px
+
     .cat-moviesList
       width 1120px
       margin 40px auto
@@ -177,8 +266,12 @@
           width 60px
           height 26px
           a
+            display inline-block
             text-decoration none
             color #333
+            height 28px
+            width 50px
+            border-radius 15px
             &.active
               background-color #f34d41
               color #fff
@@ -199,4 +292,89 @@
             &.active
               background-color #f34d41
               color #fff
+    .cat-sort
+      text-align left
+      margin 30px 0
+      .sort-content
+       display inline-block
+       width 120px
+       text-align left
+       .sortCircleIcon
+         display inline-block
+         cursor pointer
+         line-height 16px
+         img
+           vertical-align top
+       .sort-text
+         display inline-block
+         line-height 16px
+         vertical-align top
+    .movieList
+      display block
+      width 100%
+      .hot-movie
+        width 100%
+        position relative
+        left -10px
+        .movie-item
+          width 100%
+          .movie-list
+            display inline-block
+            margin-right 25px
+            margin-bottom 70px
+            .movie-info
+              position relative
+              width 162px
+              border 1px solid #ccc
+              .movie-mig
+                width 160px
+                height 220px
+              .movie-text
+                position relative
+                width 150px
+                height 22px
+                top -30px
+                left 8px
+                text-align center
+                z-index 50
+                .movie-title
+                  position absolute
+                  float left
+                  width 115px
+                  height 22px
+                  font-size 16px
+                  font-weight 700
+                  color #555
+                  line-height 22px
+                  white-space nowrap
+                  overflow hidden
+                  text-overflow ellipsis
+                  top 40px
+                .movie-score
+                  position absolute
+                  float right
+                  color #ffb400
+                  height 22px
+                  font-size 18px
+                  line-height 22px
+                  font-style italic
+                  top 70px
+                  right 50%
+
+              .buy-tickets
+                display block
+                width 160px
+                height 39px
+                text-align center
+                color #333
+                text-decoration none
+                &:hover
+                  background-color red
+                  color #fff
+    .cat-footer
+      width 100%
+      margin-top 30px
+      padding-top 20px
+      height 180px
+      overflow hidden
 </style>
