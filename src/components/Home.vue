@@ -116,7 +116,7 @@
 
       </div>
       <!--主页右边栏  -->
-      <div class="right-movieList">
+      <div class="right-movieList hidden-sm hidden-xs">
         <!--今日票房-->
         <div class="rightTicket">
           <div class="todayTicket">

@@ -19,7 +19,7 @@
       <div class="cat-moviesList">
         <!--电影类型-->
         <div class="moviesList-type">
-           <div class="title-tpe">
+           <div class="title-type">
              类型:
            </div>
           <div class="title-all">
@@ -35,7 +35,7 @@
         </div>
         <!--电影区域-->
         <div class="moviesList-type">
-          <div class="title-tpe">
+          <div class="title-type">
             区域:
           </div>
           <div class="title-all">
@@ -51,17 +51,17 @@
         </div>
         <!--电影年代-->
         <div class="moviesList-type">
-          <div class="title-tpe">
+          <div class="title-type">
             年代:
           </div>
           <div class="title-all">
             <a href="#" class="active">全部</a>
           </div>
           <div class="list-wrapper">
-            <a href="javascript:;" class="title-list" v-for="(item,index) in moviesType"
-               :key="index"
+            <a href="javascript:;" class="title-list" v-for="item in 16"
+               :key="item"
                @click="changeType" >
-              {{item}}
+              {{2019-item}}
             </a>
           </div>
         </div>
@@ -247,7 +247,7 @@
         text-align left
         &:last-child
           border none
-        .title-tpe
+        .title-type
           display inline-block
           height 24px
           line-height 24px

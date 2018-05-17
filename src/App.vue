@@ -12,7 +12,6 @@
     <router-view :getData="movieList"></router-view>
   </div>
 </template>
-
 <script>
   import catHead from './components/header'
 
