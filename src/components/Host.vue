@@ -1,13 +1,17 @@
 <template>
-    <div>
-     热点
+    <div class="cat-host">
+     <headerNav></headerNav>
     </div>
-
 </template>
 <script>
-    export default {}
-
+  import headerNav from './widget/headerNav'
+    export default {
+      components: {
+        headerNav
+      }
+    }
 </script>
-<style spoted>
-
+<style spoted lang="stylus">
+ .cat-host
+   text-align center
 </style>

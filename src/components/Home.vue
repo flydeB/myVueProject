@@ -231,7 +231,6 @@
 </template>
 <script>
   import catFooter from './footer'
-
   $(function () {
     $('.carousel').carousel({
       interval: 4000

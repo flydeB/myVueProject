@@ -39,7 +39,7 @@
            <a href="javascript:; " class="active">全部 </a>
          </div>
          <div class="item-list">
-           <a href="javascript:;" class="cinemaType-list" v-for="(item,index) in cinemaType"
+           <a href="javascript:;" class="cinemaType-list" v-for="(item,index) in especialHall"
               :key="index"
               @click="changeType"            >
              {{item}}
@@ -47,6 +47,27 @@
          </div>
        </div>
      </div>
+    <div class="movies-list">
+      影院列表
+    </div>
+
+    <div class="cinema-info" v-for="(item,index) in movieAddress" :key="index">
+      <div class="info-left">
+        <div class="info-title">
+          {{item.nm}}
+        </div>
+        <div class="info-address">
+         <span>地址:</span> {{item.addr}}
+        </div>
+      </div>
+      <div class="info-right">
+        <div class="info-price">
+          <span>&yen;</span>{{item.sellPrice}}
+          <span class="word">起</span>
+        </div>
+        <span class="info-seat">选座购票</span>
+      </div>
+    </div>
 
   </div>
 </template>
@@ -56,7 +77,9 @@
       return {
         movieAddress: [],
         region: ['朝阳区', '海淀区', '丰台区', '大兴区', '东城区', '西城区', '通州区', '房山区',
-          '昌平区', '顺义区', '怀柔区', '门头沟', '石景山区', '密云区', '平谷区', '延庆区']
+          '昌平区', '顺义区', '怀柔区', '门头沟', '石景山区', '密云区', '平谷区', '延庆区'],
+        especialHall: ['IMAX厅', '中国巨幕厅', '杜比全景声厅', 'RealD厅', 'RealD 6FL厅',
+          'LUXE巨幕厅', '4DX厅', 'DTS:X 临境音厅', '儿童厅', '4K厅', '4D厅', '巨幕厅']
       }
     },
     created () {
@@ -129,7 +152,7 @@
     .typeTitle
       width 100%
       border-bottom  1px dashed #e5e5e5
-      padding 5px 0
+      padding 5px
       text-align left
       position relative
       &:last-child
@@ -141,7 +164,7 @@
           color #999
           font-size 14px
           position absolute
-          left 5px
+          left 3px
       .title-all
           position absolute
           font-size 14px
@@ -156,9 +179,10 @@
             display inline-block
             text-decoration none
             color #333
-            height 28px
-            width 50px
+            height 26px
+            width 45px
             border-radius 15px
+            line-height 26px
             &.active
               background-color #f34d41
               color #fff
@@ -181,4 +205,65 @@
         &.active
           background-color #f34d41
           color #fff
+  .movies-list
+    font-size 18px
+    color #333
+    border-left 4px solid #f03d37
+    padding-left 6px
+    line-height 18px
+    font-weight 700
+  .cinema-info
+    position relative
+    height 88px
+    width 100%
+    padding 20px 0
+    border-bottom 1px dashed #e5e5e5
+    &:last-child
+      border-bottom none
+    .info-left
+      position absolute
+      left 0
+      cursor pointer
+      .info-title
+        font-size 16px
+        line-height 18px
+        color #333
+        margin-bottom 10px
+        &:hover
+         color #f03d37
+      .info-address
+        font-size 14px
+        line-height 14px
+        color #999
+    .info-right
+     position absolute
+     right 0
+     .info-price
+       font-size 16px
+       font-weight 700
+       color #f03d37
+       position absolute
+       right 100px
+       width 100px
+       text-align center
+       .word
+         font-size 12px
+         color #999
+         line-height 45px
+     .info-seat
+       display inline-block
+       height 30px
+       width 80px
+       line-height 30px
+       fon-size 15px
+       text-align center
+       background-color #f03d37
+       border-radius 15px
+       padding 0 8px
+       color #fff
+       margin-top 8px
+       box-shadow 0 2px 10px -2px #f03d37
+       cursor pointer
+       &:hover
+         opacity .8
 </style>
