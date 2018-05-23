@@ -38,8 +38,10 @@
         <div class="hot-movie clearfix">
           <ul class="movie-item">
             <li v-for="(item,index) in movieList " :key="index" class="movie-list"
-                v-if="item.isHot">
+                v-show="item.isHot">
               <div class="movie-info">
+                <img src="../common/img/is3D.png" class="show3D"
+                v-if="item.is3d">
                 <div class="movie-mig">
                   <img :src="item.img" width="160" height="220" alt="网络超时啦!">
                   <div class="movie-text">
@@ -66,6 +68,8 @@
             <li v-for="(item,index) in movieList " :key="index" class="movie-list"
                 v-if="item.sc===0 && index<33">
               <div class="movie-info">
+                <img src="../common/img/is3D.png" class="show3D"
+                     v-if="item.is3d">
                 <div class="movie-mig">
                   <img :src="item.img" width="160" height="220" alt="网络超时啦!">
                   <div class="movie-text">
@@ -98,6 +102,8 @@
             <li v-for="(item,index) in movieList " :key="index" class="movie-list"
                 v-show="item.sc && 5<=item.sc && item.sc<=7">
               <div class="movie-info">
+                <img src="../common/img/is3D.png" class="show3D"
+                     v-if="item.is3d">
                 <div class="movie-mig ">
                   <div class="hotPlay">
                     <img :src="item.img" width="160" height="220" alt="网络超时啦!">
@@ -326,6 +332,10 @@
                 position relative
                 width 162px
                 border 1px solid #ccc
+                .show3D
+                  position absolute
+                  left -2px
+                  top 5px
                 .movie-mig
                   width 160px
                   height 220px
@@ -387,6 +397,7 @@
         .bestWish
           position relative
           color #ffb400
+          top 5px
           .bestWish-list
             position absolute
             right 10px
@@ -394,7 +405,7 @@
             font-size 14px
         .firstTick
           position relative
-          top 23px
+          top 35px
           width 350px
           height 80px
           border 1px solid #ccc
@@ -467,7 +478,7 @@
           height 95px
           border 1px solid #ccc
           position relative
-          top 25px
+          top 50px
           cursor pointer
           .title
             position absolute

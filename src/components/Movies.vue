@@ -97,6 +97,8 @@
           <ul class="movie-item">
             <li v-for="(item,index) in moviesList " :key="index" class="movie-list">
               <div class="movie-info">
+                <img src="../common/img/is3D.png" class="show3D"
+                     v-if="item.is3d">
                 <div class="movie-mig">
                   <img :src="item.img" width="160" height="220" alt="网络超时啦!">
                   <div class="movie-text">
@@ -326,6 +328,10 @@
               position relative
               width 162px
               border 1px solid #ccc
+              .show3D
+                position absolute
+                left -2px
+                top 5px
               .movie-mig
                 width 160px
                 height 220px

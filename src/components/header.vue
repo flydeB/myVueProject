@@ -133,6 +133,7 @@
         outline none
         background-color #faf8fa
         border 1px solid #ccc
+        padding-left 20px
        .icon-search
          position absolute
          height 40px

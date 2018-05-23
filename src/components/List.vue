@@ -12,13 +12,21 @@
         </div>
         <div class="movies-info">
 
-          <ul class="info-item">
+          <ul class="info-item" v-for="num in 10" :key="num">
             <li class="info-list clearfix" v-for="(item,index) in moviesList"
                 :key="index"
-                v-show="item.sc>8" >
+                v-show="item.sc === getTop10Score[num-1]"
+                >
               <div class="info-left">
-                <i class="info-sort"></i>
+                <i class="info-sort">
+                  <img src="../common/img/iconFirst-sort.png"
+                       v-show="num===1"
+                       :class="{secondColor:num === 2}">
+                  {{num}}
+                </i>
                 <div class="info-picture">
+                  <img src="../common/img/is3D.png" class="show3D"
+                       v-if="item.is3d">
                   <img :src="item.img" alt="网络超时咯" width="160" height="220">
                 </div>
               </div>
@@ -47,11 +55,16 @@
           </ul>
         </div>
       </div>
+
+      <div class="catList-footer">
+        <cat-footer ></cat-footer>
+      </div>
     </div>
 
 </template>
 <script>
   import headerNav from './widget/headerNav'
+  import catFooter from './footer'
     export default {
       props: ['getData'],
        data () {
@@ -59,14 +72,34 @@
            moviesList: this.getData
          }
        },
+      created () {
+        this.changeColor()
+      },
       computed: {
         getDate () {
           let date = new Date()
           return date.toLocaleDateString()
+        },
+        getTop10Score () {
+          let moviesList = this.moviesList
+          let totalScore = []
+          for (let i = 0; i < moviesList.length; i++) {
+            totalScore.push(moviesList[i].sc)
+            totalScore.sort().reverse().splice(10)
+          }
+          return totalScore
+        }
+      },
+      methods: {
+        changeColor () {
+          $(function () {
+            $('.info-sort').eq(3).css('background-color', '#ffb400')
+          })
         }
       },
       components: {
-        headerNav
+        headerNav,
+        catFooter
       }
     }
 
@@ -99,8 +132,6 @@
        margin-top 40px
        position relative
        font-size 0
-       /*overflow hidden*/
-       border-bottom 1px dashed #e5e5e5
        .info-list
          margin-bottom 20px
          width 950px
@@ -112,16 +143,25 @@
              display inline-block
              width 50px
              height 50px
-             background  #ccc
+             background  #f7f7f7
+             color #999
              text-align center
              line-height 50px
              position absolute
              top 40%
              font-size 18px
-             background-image url('../common/img/iconFirst-sort.png')
+             font-weight 700
+             overflow hidden
+             &.secondColor
+               background #ffb400 !important
            .info-picture
              display inline-block
              margin-left 80px
+             .show3D
+               display inline-block
+               position absolute
+               left 76px
+               top 5px
              img
                border 1px solid #e5e5e5
          .info-right
@@ -130,6 +170,8 @@
            width 638px
            padding 68px 0 68px 30px
            border-bottom 1px dashed #e5e5e5
+           &:last-child
+             border-bottom none
            .movies-title
              font-size 26px
              color #333
@@ -153,6 +195,8 @@
            height 221px
            border-bottom 1px dashed #e5e5e5
            font-family Microsoft YaHei,Helvetica,Arial,sans-serif
+           &:last-child
+             border-bottom none
            .first-number
              display inline-block
              font-size 56px
@@ -167,4 +211,9 @@
              color #ffb400
              display inline-block
 
+    .catList-footer
+      width 100%
+      height 180px
+      padding-bottom 20px
+      margin-top 20px
 </style>
