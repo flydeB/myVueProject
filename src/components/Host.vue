@@ -9,7 +9,7 @@
             <div class="hot-now">最新资讯</div>
             <div class="hot-all">全部 &gt;</div>
           </div>
-          <div class="hot-movie clearfix">
+          <div class="hot-movie ">
             <ul class="movie-item">
               <li v-for="(item,index) in movieList " :key="index" class="movie-list"
                   v-if="item.isHot">
@@ -26,7 +26,7 @@
             <div class="hot-now hot-once">预告片速递</div>
             <div class="hot-all hot-once">全部&gt;</div>
           </div>
-          <div class="hot-movie clearfix">
+          <div class="hot-movie">
             <ul class="movie-item">
               <li v-for="(item,index) in movieList " :key="index" class="movie-list"
                   v-if="item.sc===0 && index<33">
@@ -46,7 +46,7 @@
           <div class="hot-movie clearfix">
             <ul class="movie-item catHotPlayList">
               <li v-for="(item,index) in movieList " :key="index" class="movie-list"
-                  v-show="item.sc && 5<=item.sc && item.sc<=7"
+                  v-show="item.sc && 4<=item.sc && item.sc<=7"
                   >
                 <div class="movie-info">
                   <div class="movie-mig ">
@@ -108,21 +108,20 @@
               </li>
 
             </ul>
-
             <div class="hot-trailer">
               热门预告片
             </div>
             <div class="trailer-item">
                <div class="trailer-list">
-                <div>
-                  <img src="../common/img/hot-prevue1.png" >
-                  <img src="../common/img/icon-play.png" >
+                <div class="trailer-images">
+                  <img src="../common/img/hot-prevue1.png" class="image-main">
+                  <img src="../common/img/icon-play.png" class="image-icon" >
                   <i class="trailer-num">
                      1
                   </i>
                 </div>
                  <div class="trailer-text">
-                   <div class="trailer name">
+                   <div class="trailer-name">
                      《超时空同居》群星版预告片
                    </div>
                    <div class="trailer-num">
@@ -130,17 +129,84 @@
                    </div>
                  </div>
                </div>
-
+              <div class="trailer-list">
+                <div class="trailer-images">
+                  <img src="../common/img/hot-prevue2.png" class="image-main">
+                  <img src="../common/img/icon-play.png" class="image-icon" >
+                  <i class="trailer-num">
+                    2
+                  </i>
+                </div>
+                <div class="trailer-text">
+                  <div class="trailer-name">
+                    《超时空同居》群星版预告片
+                  </div>
+                  <div class="trailer-num">
+                    290.3万
+                  </div>
+                </div>
+              </div>
+              <div class="trailer-list">
+                <div class="trailer-images">
+                  <img src="../common/img/hot-prevue3.png" class="image-main">
+                  <img src="../common/img/icon-play.png" class="image-icon" >
+                  <i class="trailer-num">
+                    3
+                  </i>
+                </div>
+                <div class="trailer-text">
+                  <div class="trailer-name">
+                    《超时空同居》群星版预告片
+                  </div>
+                  <div class="trailer-num">
+                    290.3万
+                  </div>
+                </div>
+              </div>
+              <div class="trailer-list">
+                <div class="trailer-images">
+                  <img src="../common/img/hot-prevue4.png" class="image-main">
+                  <img src="../common/img/icon-play.png" class="image-icon" >
+                  <i class="trailer-num">
+                    4
+                  </i>
+                </div>
+                <div class="trailer-text">
+                  <div class="trailer-name">
+                    《超时空同居》群星版预告片
+                  </div>
+                  <div class="trailer-num">
+                    290.3万
+                  </div>
+                </div>
+              </div>
+              <div class="trailer-list">
+                <div class="trailer-images">
+                  <img src="../common/img/hot-prevue5.png" class="image-main">
+                  <img src="../common/img/icon-play.png" class="image-icon" >
+                  <i class="trailer-num">
+                    5
+                  </i>
+                </div>
+                <div class="trailer-text">
+                  <div class="trailer-name">
+                    《超时空同居》群星版预告片
+                  </div>
+                  <div class="trailer-num">
+                    290.3万
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-
         </div>
-
       </div>
+
     </div>
 </template>
 <script>
   import headerNav from './widget/host-headerNav'
+  import catFooter from './footer'
     export default {
       props: ['getData'],
       data () {
@@ -149,7 +215,8 @@
         }
       },
       components: {
-        headerNav
+        headerNav,
+        catFooter
       }
     }
 </script>
@@ -209,60 +276,117 @@
        width 200px
        height 300px
        text-align left
-   .todayTicket
-    font-size 26px
-    color #ef4238
-    margin-bottom 30px
-    font-weight 400
-   .hot-item
-     width 360px
-     position relative
-     li
-      width 100%
-      cursor pointer
-      .firstText
-        float right
-        white-space normal
-        line-height 30px
-        &:hover
-          color #ef4238
-        .spiderMen
-          float left
-          display block
-        .firstCount
-          position absolute
-          left 0
-          top  52px
-          height 20px
-          width 20px
-          background-color #ef4238
-          color #fff
-          line-height 20px
-          margin 0
-          padding-left 3px
-          font-style italic
-          font-size 18px
-      p
-       clear both
-       padding 10px 0
-       overflow hidden
-       color #333
-       font-size 14px
-       text-overflow ellipsis
-       white-space nowrap
-       &:hover
-        color #ef4238
-       span
-         display inline-block
-         width 15px
-         margin-right 8px
-         font-size 16px
-         color #999
-         font-style italic
-         line-height 20px
-   .hot-trailer
-     font-size 26px
-     color #2d98f3
-     margin-top 40px
-     margin-bottom 20px
+       .rightTicket
+         display block
+       .todayTicket
+         font-size 26px
+         color #ef4238
+         margin-bottom 30px
+         font-weight 400
+       .hot-item
+         width 360px
+         position relative
+         li
+           width 100%
+           cursor pointer
+           .firstText
+             float right
+             white-space normal
+             line-height 30px
+             &:hover
+               color #ef4238
+             .spiderMen
+               float left
+               display block
+             .firstCount
+               position absolute
+               left 0
+               top 52px
+               height 20px
+               width 20px
+               background-color #ef4238
+               color #fff
+               line-height 20px
+               margin 0
+               padding-left 3px
+               font-style italic
+               font-size 18px
+           p
+             clear both
+             padding 10px 0
+             overflow hidden
+             color #333
+             font-size 14px
+             text-overflow ellipsis
+             white-space nowrap
+             &:hover
+               color #ef4238
+             span
+               display inline-block
+               width 15px
+               margin-right 8px
+               font-size 16px
+               color #999
+               font-style italic
+               line-height 20px
+       .hot-trailer
+         font-size 26px
+         color #2d98f3
+         margin-top 40px
+         margin-bottom 20px
+       .trailer-item
+         margin-top 30px
+         .trailer-list
+           position relative
+           cursor pointer
+           margin-bottom 20px
+           height 68px
+           .trailer-images
+             position absolute
+             left 0
+             .image-main
+               winth 120px
+               height 68px
+             .image-icon
+               position absolute
+               width 24px
+               height 24px
+               right 6px
+               bottom 6px
+             .trailer-num
+               position absolute
+               width 16px
+               height 18px
+               background-color #f90
+               line-height 18px
+               text-align center
+               font-size 16px
+               font-style italic
+               color #fff
+               left 0
+               bottom 0
+               padding-right 3px
+           .trailer-text
+             position absolute
+             right 30px
+             top 20px
+             .trailer-name
+               margin-bottom 10px
+               overflow hidden
+               text-overflow ellipsis
+               white-space nowrap
+               color #333
+               font-size 14px
+               &:hover
+                 color #ef4238
+             .trailer-num
+               font-size 13px
+               color #999
+               &::before
+                 content ""
+                 display inline-block
+                 border-top 7px solid transparent
+                 border-bottom 7px solid transparent
+                 right none
+                 border-left 9px solid #ccc
 </style>

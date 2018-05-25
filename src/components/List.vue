@@ -55,7 +55,8 @@
           </ul>
         </div>
       </div>
-
+     <router-link to="/ratings">点击
+     </router-link>
       <div class="catList-footer">
         <cat-footer ></cat-footer>
       </div>

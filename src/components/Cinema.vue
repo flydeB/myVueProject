@@ -1,77 +1,94 @@
 <template>
-  <div class="cat-cinema container">
-     <div class="top-item">
-       <div class="typeTitle">
-         <div class="title-type">
+  <div class="cat-cinema-wrapper">
+    <div class="cat-cinema container">
+      <div class="top-item">
+        <div class="typeTitle">
+          <div class="title-type">
             品牌:
-         </div>
-         <div class="title-all">
-           <a href="javascript:; " class="active">全部 </a>
-         </div>
-         <div class="item-list">
-           <a href="javascript:;" class="cinemaType-list" v-for="(item,index) in cinemaType"
-              :key="index"
-              @click="changeType"            >
-             {{item}}
-           </a>
-         </div>
-       </div>
-       <div class="typeTitle">
-         <div class="title-type">
-           行政区:
-         </div>
-         <div class="title-all">
-           <a href="javascript:; " class="active">全部 </a>
-         </div>
-         <div class="item-list">
-           <a href="javascript:;" class="cinemaType-list" v-for="(item,index) in region"
-              :key="index"
-              @click="changeType"            >
-             {{item}}
-           </a>
-         </div>
-       </div>
-       <div class="typeTitle">
-         <div class="title-type">
-           特殊厅:
-         </div>
-         <div class="title-all">
-           <a href="javascript:; " class="active">全部 </a>
-         </div>
-         <div class="item-list">
-           <a href="javascript:;" class="cinemaType-list" v-for="(item,index) in especialHall"
-              :key="index"
-              @click="changeType"            >
-             {{item}}
-           </a>
-         </div>
-       </div>
-     </div>
-    <div class="movies-list">
-      影院列表
-    </div>
-
-    <div class="cinema-info" v-for="(item,index) in movieAddress" :key="index">
-      <div class="info-left">
-        <div class="info-title">
-          {{item.nm}}
+          </div>
+          <div class="title-all">
+            <a href="javascript:; " class="active">全部 </a>
+          </div>
+          <div class="item-list">
+            <a href="javascript:;" class="cinemaType-list" v-for="(item,index) in cinemaType"
+               :key="index"
+               @click="changeType"            >
+              {{item}}
+            </a>
+          </div>
         </div>
-        <div class="info-address">
-         <span>地址:</span> {{item.addr}}
+        <div class="typeTitle">
+          <div class="title-type">
+            行政区:
+          </div>
+          <div class="title-all">
+            <a href="javascript:; " class="active">全部 </a>
+          </div>
+          <div class="item-list">
+            <a href="javascript:;" class="cinemaType-list" v-for="(item,index) in region"
+               :key="index"
+               @click="changeType"            >
+              {{item}}
+            </a>
+          </div>
+        </div>
+        <div class="typeTitle">
+          <div class="title-type">
+            特殊厅:
+          </div>
+          <div class="title-all">
+            <a href="javascript:; " class="active">全部 </a>
+          </div>
+          <div class="item-list">
+            <a href="javascript:;" class="cinemaType-list" v-for="(item,index) in especialHall"
+               :key="index"
+               @click="changeType"            >
+              {{item}}
+            </a>
+          </div>
         </div>
       </div>
-      <div class="info-right">
-        <div class="info-price">
-          <span>&yen;</span>{{item.sellPrice}}
-          <span class="word">起</span>
+      <div class="movies-list">
+        影院列表
+      </div>
+      <div class="cinema-wrapper">
+        <div class="cinema-info" v-for="(item,index) in movieAddress" :key="index">
+          <div class="info-left">
+            <div class="info-title">
+              {{item.nm}}
+            </div>
+            <div class="info-address">
+              <span>地址:</span> {{item.addr}}
+            </div>
+          </div>
+          <div class="info-right">
+            <div class="info-price">
+              <span>&yen;</span>{{item.sellPrice}}
+              <span class="word">起</span>
+            </div>
+            <span class="info-seat">选座购票</span>
+          </div>
         </div>
-        <span class="info-seat">选座购票</span>
+      </div>
+      <div class="cat-page">
+        <ul class="cat-page-item">
+          <li>1</li>
+          <li>2</li>
+          <li>3</li>
+          <li>....</li>
+          <li>下一页</li>
+        </ul>
       </div>
     </div>
 
+    <div class="footerCinema">
+      <cinema-footer></cinema-footer>
+    </div>
   </div>
+
 </template>
 <script>
+  import cinemaFooter from './footer'
   export default {
     data () {
       return {
@@ -88,13 +105,18 @@
           if (res.data.status === 0) {
             this.movieAddress = res.data.data.朝阳区
             console.log(res)
+            this.$nextTick(() => {
+              this.pageChange()
+            })
           }
         })
         .catch((error) => {
           alert(error)
         })
     },
-    components: {},
+    components: {
+      cinemaFooter
+    },
     computed: {
       cinemaType () {
         let allCinemaType = this.movieAddress
@@ -138,6 +160,34 @@
               .children()
               .removeClass('active')
           })
+        })
+      },
+      pageChange () {
+        $(function () {
+          $('.cat-page-item li').click(function () {
+            $(this).css({
+              'background': '#f03d37',
+              'color': '#fff'
+            }).siblings().css({
+              'background': '#fff',
+              'color': '#333'
+            })
+
+            $('.cat-page-item li')
+              .eq(2)
+               .parent()
+               .parent()
+               .prev()
+               .css('height', '1500')
+
+             $('.cat-page-item li')
+               .eq(5)
+               .parent()
+               .parent()
+               .prev()
+               .css('height', '1800')
+              console.log()
+           })
         })
       }
     }
@@ -212,58 +262,91 @@
     padding-left 6px
     line-height 18px
     font-weight 700
-  .cinema-info
-    position relative
-    height 88px
-    width 100%
-    padding 20px 0
-    border-bottom 1px dashed #e5e5e5
-    &:last-child
-      border-bottom none
-    .info-left
-      position absolute
-      left 0
-      cursor pointer
-      .info-title
-        font-size 16px
-        line-height 18px
-        color #333
-        margin-bottom 10px
-        &:hover
-         color #f03d37
-      .info-address
-        font-size 14px
-        line-height 14px
-        color #999
-    .info-right
-     position absolute
-     right 0
-     .info-price
-       font-size 16px
-       font-weight 700
-       color #f03d37
+  .cinema-wrapper
+    height 1030px
+    overflow hidden
+    .cinema-info
+      position relative
+      height 88px
+      width 100%
+      padding 20px 0
+      border-bottom 1px dashed #e5e5e5
+      &:last-child
+        border-bottom none
+      .info-left
+        position absolute
+        left 0
+        cursor pointer
+        .info-title
+          font-size 16px
+          line-height 18px
+          color #333
+          margin-bottom 10px
+          &:hover
+           color #f03d37
+        .info-address
+          font-size 14px
+          line-height 14px
+          color #999
+      .info-right
        position absolute
-       right 100px
-       width 100px
-       text-align center
-       .word
-         font-size 12px
-         color #999
-         line-height 45px
-     .info-seat
-       display inline-block
-       height 30px
-       width 80px
-       line-height 30px
-       fon-size 15px
-       text-align center
-       background-color #f03d37
-       border-radius 15px
-       padding 0 8px
-       color #fff
-       margin-top 8px
-       box-shadow 0 2px 10px -2px #f03d37
-       cursor pointer
-       &:hover
-         opacity .8
+       right 0
+       .info-price
+         font-size 16px
+         font-weight 700
+         color #f03d37
+         position absolute
+         right 100px
+         width 100px
+         text-align center
+         .word
+           font-size 12px
+           color #999
+           line-height 45px
+       .info-seat
+         display inline-block
+         height 30px
+         width 80px
+         line-height 30px
+         fon-size 15px
+         text-align center
+         background-color #f03d37
+         border-radius 15px
+         padding 0 8px
+         color #fff
+         margin-top 8px
+         box-shadow 0 2px 10px -2px #f03d37
+         cursor pointer
+         &:hover
+           opacity .8
+  .cat-page
+   position relative
+   height 30px
+   top 30px
+   .cat-page-item
+     width 300px
+     height 100%
+     position absolute
+     left 50%
+     li
+      display inline-block
+      height 30px
+      width 30px
+      border 1px solid #999
+      line-height 30px
+      text-align center
+      margin-right 20px
+      color #333
+      font-size 14px
+      cursor pointer
+      &:hover
+        border 1px solid #f03d37
+      &:last-child
+       width 60px
+      &:first-child
+        background #f03d37
+        color #fff
+
+  .footerCinema
+    margin-top 100px
 </style>

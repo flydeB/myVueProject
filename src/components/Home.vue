@@ -100,7 +100,7 @@
         <div class="hot-movie clearfix">
           <ul class="movie-item catHotPlayList">
             <li v-for="(item,index) in movieList " :key="index" class="movie-list"
-                v-show="item.sc && 5<=item.sc && item.sc<=7">
+                v-show="item.sc && 4<=item.sc && item.sc<=7">
               <div class="movie-info">
                 <img src="../common/img/is3D.png" class="show3D"
                      v-if="item.is3d">
@@ -382,6 +382,10 @@
                     font-size 16px
                     line-height 39px
                     left -60px
+              .showTime
+               margin 5px 0 20px 0
+               font-size 14px
+               color #999
       .right-movieList
         flex 1
         width 200px

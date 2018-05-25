@@ -17,7 +17,7 @@
     export default {
       data () {
         return {
-          movieTpe: ['热点首页', '新闻资讯', '预告片', '新闻图集',]
+          movieTpe: ['热点首页', '新闻资讯', '预告片', '新闻图集']
         }
       },
       created () {
