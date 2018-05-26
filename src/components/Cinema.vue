@@ -104,7 +104,6 @@
         .then((res) => {
           if (res.data.status === 0) {
             this.movieAddress = res.data.data.朝阳区
-            console.log(res)
             this.$nextTick(() => {
               this.pageChange()
             })

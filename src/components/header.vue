@@ -61,6 +61,7 @@
        line-height 80px
        position relative
        float left
+       left 10px
        a
         position  absolute
         left 0

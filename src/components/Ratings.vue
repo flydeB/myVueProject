@@ -3,7 +3,7 @@
 
     <div class="ratings-head">
       <div class="ratings-img">
-        <img :src="movieList[4].img" width="240" height="330">
+        <img :src="movieList[4].img" width="240" height="330" class="banner-image">
       </div>
       <div class="ratings-content">
         <div class="name">
@@ -22,7 +22,7 @@
       </div>
       <div class="rings-icons">
         <div class="icon-left ratings-icon">
-          <i><img src="../common/img/icon-heart.png" class="iconWish"></i> 想看
+          <i><img class="iconWish" src="../common/img/icon-heart.png"></i> 想看
         </div>
         <div class="icon-right ratings-icon">
           <i><img src="../common/img/icon-star.png"></i> 评分
@@ -36,7 +36,14 @@
           用户评分
         </div>
         <div class="movieScore">
-          <span>{{movieList[4].sc}}</span>
+          <span>{{movieList[4].sc}}.0</span>
+        </div>
+        <div class="allTickets">
+          累计票房
+        </div>
+        <div class="allTicketNumber">
+          9.87
+          <span>亿</span>
         </div>
         <div class="stars-icon">
 
@@ -46,7 +53,6 @@
   </div>
 </template>
 <script>
-  const LENGTH = 5
   export default {
     data () {
       return {
@@ -56,21 +62,13 @@
     created () {
       this.$axios.get('/static/data/movieList.json')
         .then((res) => {
-          console.log(res.data.data.movies)
           this.movieList = res.data.data.movies
         })
         .catch((error) => {
           alert(error)
         })
-    },
-    computed: {
-      starType () {
-        let result = []
-        let score = Math.floor(this.score * 2) / 2
-      }
     }
   }
-
 </script>
 <style spoted lang="stylus">
   .movies-ratings
@@ -89,7 +87,7 @@
         border 4px solid #fff
         top 80px
         left 50px
-        img
+        .banner-image
           width 100%
           height 100%
       .ratings-content
@@ -104,7 +102,6 @@
           margin 15px 0
         .time
           margin-bottom 15px
-
       .rings-icons
         position absolute
         width 260px
@@ -135,4 +132,23 @@
           font-size 16px
           text-align center
           background-color #df2d2d
+      .score
+        position absolute
+        bottom 50px
+        left 700px
+        .userRating
+          margin-bottom 8px
+          font-size 12px
+        .movieScore
+          font-size 30px
+          line-height 30px
+          color #ffc600
+          margin-bottom 12px
+        .allTickets
+          font-size 12px
+          margin-bottom 12px
+        .allTicketNumber
+          font-size 30px
+          span
+            font-size 12px
 </style>

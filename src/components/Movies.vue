@@ -6,7 +6,7 @@
         <a href="#" class="navBar-list" @click="changeColor">
           <span class="navBar-title changeStyle">正在上映</span>
         </a>
-        <a href="#" class="navBar-list" @click="changeColor">
+        <a href="#" class="navBar-list btn-soon" @click="changeColor">
           <span class="navBar-title">即将上映</span>
         </a>
         <a href="#" class="navBar-list" @click="changeColor">
@@ -112,6 +112,15 @@
             </li>
           </ul>
         </div>
+        <!--页面按钮-->
+        <div class="cat-page">
+          <ul class="cat-page-item">
+            <li>1</li>
+            <li>2</li>
+            <li>...</li>
+            <li>下一页</li>
+          </ul>
+        </div>
       </div>
     </div>
     <!--脚部组件-->
@@ -134,7 +143,11 @@
     components: {
       catFooter
     },
+    created () {
+    this.pageChange()
+    },
     computed: {
+      // 出重筛选出所有的电影类型
       moviesType () {
         let movies = this.moviesList
         let allType = []
@@ -152,9 +165,23 @@
           }
         }
         return allType
+      },
+      btnSoon () {
+        let $btnSoon = $('.btn-soon')
+        let moviesList = this.moviesList
+        $btnSoon.click(function () {
+          for (let i = 0; i < moviesList.length; i++) {
+            if (moviesList[i].sc === 0) {
+              moviesList.splice(0, moviesList.length) // 清空数组
+              moviesList.push(moviesList[i])
+            }
+          }
+        })
+          return moviesList
       }
     },
     methods: {
+      // 导航条改变字体的样式
       changeColor () {
         $(function () {
           $('.navBar-title').click(function () {
@@ -167,6 +194,7 @@
           })
         })
      },
+      // 点击切换电影类型的active
       changeType () {
         $(function () {
           $('.title-list').click(function () {
@@ -186,6 +214,21 @@
               .siblings()
               .children()
               .removeClass('active')
+          })
+        })
+      },
+      // 点击下一页按钮
+      pageChange () {
+        $(function () {
+          $('.cat-page-item li').click(function () {
+            $(this).css({
+              'background': '#f03d37',
+              'color': '#fff'
+            }).siblings().css({
+              'background': '#fff',
+              'color': '#333'
+            })
+            $('.hot-movie').css('height', 'auto')
           })
         })
       }
@@ -318,6 +361,8 @@
         width 100%
         position relative
         left -10px
+        height 1450px
+        overflow hidden
         .movie-item
           width 100%
           .movie-list
@@ -377,10 +422,37 @@
                 &:hover
                   background-color red
                   color #fff
+      .cat-page
+        position relative
+        height 30px
+        top 30px
+        .cat-page-item
+          width 300px
+          height 100%
+          position absolute
+          left 50%
+          li
+            display inline-block
+            height 30px
+            width 30px
+            border 1px solid #999
+            line-height 30px
+            text-align center
+            margin-right 20px
+            color #333
+            font-size 14px
+            cursor pointer
+            &:hover
+              border 1px solid #f03d37
+            &:last-child
+              width 60px
+            &:first-child
+              background #f03d37
+              color #fff
     .cat-footer
       width 100%
-      margin-top 30px
-      padding-top 20px
+      margin-top 50px
+      padding-top 10px
       height 180px
       overflow hidden
 </style>

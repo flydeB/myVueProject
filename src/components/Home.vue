@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="cat-home">
     <!-- 主页轮播图 -->
     <div id="carousel-example-generic" class="carousel slide">
       <ol class="carousel-indicators">
@@ -42,18 +42,23 @@
               <div class="movie-info">
                 <img src="../common/img/is3D.png" class="show3D"
                 v-if="item.is3d">
-                <div class="movie-mig">
-                  <img :src="item.img" width="160" height="220" alt="网络超时啦!">
-                  <div class="movie-text">
-                    <div class="movie-title">{{item.nm}}</div>
-                    <span class="movie-score">
+                <router-link to="/ratings">
+                  <div class="movie-mig">
+                    <img :src="item.img" width="160" height="220" alt="网络超时啦!">
+                    <div class="movie-text">
+                      <div class="movie-title">{{item.nm}}</div>
+                      <span class="movie-score">
                       {{item.sc?item.sc:"无..."}}
                     </span>
+                    </div>
                   </div>
-                </div>
+                </router-link>
+              <router-link to="/ratings">
                 <a href="#" class="buy-tickets">
                   <div class="buy-text">购 票</div>
                 </a>
+              </router-link>
+
               </div>
             </li>
           </ul>
@@ -70,18 +75,25 @@
               <div class="movie-info">
                 <img src="../common/img/is3D.png" class="show3D"
                      v-if="item.is3d">
-                <div class="movie-mig">
-                  <img :src="item.img" width="160" height="220" alt="网络超时啦!">
-                  <div class="movie-text">
-                    <div class="movie-title">{{item.nm}}</div>
-                    <span class="movie-score">
+                <router-link to="/ratings">
+                  <router-link to="/ratings">
+                    <div class="movie-mig">
+                      <img :src="item.img" width="160" height="220" alt="网络超时啦!">
+                      <div class="movie-text">
+                        <div class="movie-title">{{item.nm}}</div>
+                        <span class="movie-score">
                       {{item.sc?item.sc:"无.."}}
                     </span>
-                  </div>
-                </div>
-                <a href="#" class="buy-tickets">
-                  <div class="buy-text">预 售</div>
-                </a>
+                      </div>
+                    </div>
+                  </router-link>
+                </router-link>
+
+                <router-link to="/ratings">
+                  <a href="#" class="buy-tickets">
+                    <div class="buy-text">预 售</div>
+                  </a>
+                </router-link>
               </div>
               <div class="showTime">
                 {{item.rt}}
@@ -230,7 +242,7 @@
 
       </div>
     </div>
-    <div class="catFooter clearfix">
+    <div class="homeFooter clearfix">
       <cat-footer></cat-footer>
     </div>
   </div>
@@ -265,10 +277,6 @@
   }
 </script>
 <style spoted lang="stylus">
-  .home
-    position relative
-    width 100%
-    margin-bottom 80px
     .carousel
       width 100%
       .left-right-control
@@ -292,7 +300,7 @@
       .left-movieList
         flex 2
         width 200px
-        height 300px
+        /*height 300px*/
         .hot-on
           width 100%
           height 30px
@@ -340,6 +348,7 @@
                   width 160px
                   height 220px
                   z-index 20
+                  cursor pointer
                 .movie-text
                   position relative
                   width 150px
@@ -511,9 +520,7 @@
               margin 8px 0 0 10px
               font-size 13px
               color #999
-    .catFooter
+    .homeFooter
+      margin-top 20px
       width 100%
-      position absolute
-      left 0
-      top 2350px
 </style>
