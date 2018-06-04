@@ -236,6 +236,7 @@
   }
 </script>
 <style spoted lang="stylus">
+  @import "../common/stylus/base.styl"
   .cat-movie
     position relative
     width 100%
@@ -263,7 +264,7 @@
             &:hover
               color #fff
             &.changeStyle
-              color #ef4238
+              color mainColorRed
               display inline-block
               &:before
                 content ""

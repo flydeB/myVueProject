@@ -249,6 +249,7 @@
 </template>
 <script>
   import catFooter from './footer'
+
   $(function () {
     $('.carousel').carousel({
       interval: 4000
@@ -277,6 +278,7 @@
   }
 </script>
 <style spoted lang="stylus">
+  @import "../common/stylus/base.styl"
     .carousel
       width 100%
       .left-right-control
@@ -310,7 +312,7 @@
           .hot-now
             float left
             font-size 26px
-            color #ef4238
+            color mainColorRed
             margin-right 20px
             cursor pointer
           .moviesType
@@ -322,7 +324,7 @@
             float right
             font-size 16px
             line-height 30px
-            color #ef4238
+            color mainColorRed
             font-weight 700
             font-family '黑体'
             cursor pointer
@@ -406,7 +408,7 @@
            top 115px
         .todayTicket
           font-size 26px
-          color #ef4238
+          color mainColorRed
         .bestWish
           position relative
           color #ffb400
@@ -450,7 +452,7 @@
             .ticketNum
               margin 5px
               font-zise 13px
-              color #ef4238
+              color mainColorRed
             .bestWish-time
               position relative
               color #999
@@ -483,7 +485,7 @@
             .score
               float right
               font-size 14px
-              color #ef4238
+              color mainColorRed
               &.bestWish-score
                 color #ffb400
         .todayTicketNumber
@@ -499,7 +501,7 @@
             right 0
             width 30px
             height 100%
-            background #ef4238
+            background mainColorRed
             color #fff
             font-size 17px
             text-align center
@@ -510,7 +512,7 @@
             left 30px
             top 15px
             font-size 30px
-            color #ef4238
+            color mainColorRed
             .wan, .moreState
               font-size 14px
               display inline-block

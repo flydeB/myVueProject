@@ -224,6 +224,7 @@
     }
 </script>
 <style spoted lang="stylus">
+  @import "../common/stylus/base.styl"
  .cat-host
    text-align center
    .movieList
@@ -243,7 +244,7 @@
          .hot-now
            float left
            font-size 26px
-           color #ef4238
+           color mainColorRed
            margin-right 20px
            cursor pointer
          .hot-once
@@ -252,7 +253,7 @@
            float right
            font-size 16px
            line-height 30px
-           color #ef4238
+           color mainColorRed
            font-weight 700
            font-family '黑体'
            cursor pointer
@@ -283,7 +284,7 @@
          display block
        .todayTicket
          font-size 26px
-         color #ef4238
+         color mainColorRed
          margin-bottom 30px
          font-weight 400
        .hot-item
@@ -297,7 +298,7 @@
              white-space normal
              line-height 30px
              &:hover
-               color #ef4238
+               color mainColorRed
              .spiderMen
                float left
                display block
@@ -307,7 +308,7 @@
                top 52px
                height 20px
                width 20px
-               background-color #ef4238
+               background-color mainColorRed
                color #fff
                line-height 20px
                margin 0
@@ -323,7 +324,7 @@
              text-overflow ellipsis
              white-space nowrap
              &:hover
-               color #ef4238
+               color mainColorRed
              span
                display inline-block
                width 15px
@@ -371,7 +372,7 @@
                padding-right 3px
            .trailer-text
              position absolute
-             right 30px
+             right 100px
              top 20px
              .trailer-name
                margin-bottom 10px
@@ -381,7 +382,7 @@
                color #333
                font-size 14px
                &:hover
-                 color #ef4238
+                 color mainColorRed
              .trailer-num
                font-size 13px
                color #999

@@ -139,7 +139,7 @@
          position absolute
          height 40px
          width 40px
-         background #ef4238
+         background mainColorRed
          border-radius 50%
          right 0
          top 0
