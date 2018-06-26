@@ -284,6 +284,7 @@
        .pictureMovies
          margin-top 20px
          height 270px
+         width 740px
          img
           margin-bottom 4px
          .pictureRight
