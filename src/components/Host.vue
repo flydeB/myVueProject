@@ -263,7 +263,7 @@
          position relative
          text-align center
          .movie-item
-           width 100%
+           width 900px
            .movie-list
              display inline-block
              margin-right 20px

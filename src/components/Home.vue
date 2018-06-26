@@ -134,7 +134,7 @@
 
       </div>
       <!--主页右边栏  -->
-      <div class="right-movieList hidden-sm hidden-xs">
+      <div class="right-movieList">
         <!--今日票房-->
         <div class="rightTicket">
           <div class="todayTicket">
@@ -281,6 +281,8 @@
   @import "../common/stylus/base.styl"
     .carousel
       width 100%
+      img
+        width 100%
       .left-right-control
         font-family '宋体'
         position absolute
@@ -334,7 +336,8 @@
           position relative
           text-align center
           .movie-item
-            width 100%
+            width 760px
+            margin 0 auto
             .movie-list
               display inline-block
               margin-right 20px
@@ -401,6 +404,8 @@
         flex 1
         width 200px
         height 300px
+        @media screen and (max-width 1212px)  /*屏幕宽度小于1212px的时候就会隐藏*/
+          display none
         .rightTicket
          margin-bottom 90px
          &.ranking100
